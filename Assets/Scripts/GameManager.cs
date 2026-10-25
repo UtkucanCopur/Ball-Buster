@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     private int remainBallCount;
     private int poolIndex;
 
+    [Header("----Other Settings----")]
+    [SerializeField] private ParticleSystem explosionEffect;
+
+
     [Header("----Ball Throw System----")]
     [SerializeField] private GameObject ballThrower;
     [SerializeField] private GameObject ballPlaceHolder;
@@ -116,5 +120,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ExplosionEffect(Vector2 Position)
+    {
+        explosionEffect.gameObject.transform.position = Position;
+        explosionEffect.gameObject.SetActive(true);
+        explosionEffect.Play();
+    }
 
 }
