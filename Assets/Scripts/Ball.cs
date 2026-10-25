@@ -23,7 +23,7 @@ public class Ball : MonoBehaviour
         first = true;
     }
 
-    private void ChangeFirstStatus()
+    public void ChangeFirstStatus()
     {
         Invoke("ArrangeStatus", 2f);
     }
