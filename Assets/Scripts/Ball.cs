@@ -9,12 +9,17 @@ public class Ball : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private ParticleSystem mergeEffect;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private bool isBallDefault;
 
     private bool first;
 
     void Start()
     {
         numberText.text = number.ToString();
+
+        if (isBallDefault)
+            first = true;
+
     }
 
 
