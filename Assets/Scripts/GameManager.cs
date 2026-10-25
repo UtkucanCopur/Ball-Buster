@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [Header("----Other Settings----")]
     [SerializeField] private ParticleSystem explosionEffect;
+    [SerializeField] private ParticleSystem[] boxRippedEffects;
+    private int boxRippedIndex;
 
 
     [Header("----Ball Throw System----")]
@@ -125,6 +127,24 @@ public class GameManager : MonoBehaviour
         explosionEffect.gameObject.transform.position = Position;
         explosionEffect.gameObject.SetActive(true);
         explosionEffect.Play();
+    }
+
+    public void BoxRippedEffect(Vector2 Position)
+    {
+        
+        boxRippedEffects[boxRippedIndex].gameObject.transform.position = Position;
+        boxRippedEffects[boxRippedIndex].gameObject.SetActive(true);
+        boxRippedEffects[boxRippedIndex].Play();
+        boxRippedIndex++;
+
+
+        if (boxRippedIndex == boxRippedEffects.Length - 1)
+        {
+            boxRippedIndex = 0;
+        }
+        else
+            boxRippedIndex++;
+
     }
 
 }

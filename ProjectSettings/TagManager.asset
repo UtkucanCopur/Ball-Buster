@@ -17,6 +17,7 @@ TagManager:
   - 512
   - 1024
   - 2048
+  - Box
   layers:
   - Default
   - TransparentFX
