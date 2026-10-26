@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -55,9 +56,17 @@ public class GameManager : MonoBehaviour
     public bool isBallTargetActive;
     private int totalMissionCount;
 
+
+    [Header("----Buttons----")]
+    [SerializeField] private GameObject overallPanel;
+    [SerializeField] private GameObject nextButton;
+    [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject quitButton;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        overallPanel.GetComponent<Image>().color = new Color(255, 255, 255, 0);
         remainBallCount = balls.Length;
         GetBall(true);
         totalMissionCount = Missions.Count;
@@ -205,14 +214,14 @@ public class GameManager : MonoBehaviour
             if (boxValue == 0)
             {
                 MissionsUI[1].isCompleted.SetActive(true);
+                totalMissionCount--;
 
+                if (totalMissionCount == 0)
+                {
+                    YouWin();
+                }
             }
-            totalMissionCount--;
-
-            if (totalMissionCount == 0)
-            {
-                YouWin();
-            }
+            
 
 
         }
@@ -246,13 +255,33 @@ public class GameManager : MonoBehaviour
 
     private void YouWin()
     {
-        Debug.Log("you win");
+        overallPanel.GetComponent<Image>().color = new Color(255, 255, 255, 121);
+        nextButton.SetActive(true);
+        restartButton.SetActive(true);
+        quitButton.SetActive(true);
+
     }
 
     private void YouLose()
     {
-
+        overallPanel.SetActive(true);
+        restartButton.SetActive(true);
+        quitButton.SetActive(true);
     }
 
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 
 }
