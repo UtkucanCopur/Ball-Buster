@@ -74,7 +74,10 @@ public class Ball : MonoBehaviour
                     break;
                 
             }
-
+            if (gameManager.isBallTargetActive)
+            {
+                gameManager.MissionCountControl(number);
+            }
             first = false;
             Invoke("ArrangeStatus", 2f);
         }
@@ -118,6 +121,11 @@ public class Ball : MonoBehaviour
                     spriteRenderer.sprite = gameManager.spriteObjects[8];
                     break;
 
+            }
+
+            if (gameManager.isBallTargetActive)
+            {
+                gameManager.MissionCountControl(number);
             }
 
             first = false;

@@ -49,12 +49,18 @@ public class GameManager : MonoBehaviour
     [Header("----Missions----")]
     [SerializeField] private List<Missions> Missions;
     [SerializeField] private List<MissionsUI> MissionsUI;
+    private int ballValue;
+    private int boxValue;
+    private bool isBoxTargetActive;
+    public bool isBallTargetActive;
+    private int totalMissionCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         remainBallCount = balls.Length;
         GetBall(true);
+        totalMissionCount = Missions.Count;
 
         for (int i = 0; i < Missions.Count; i++)
         {
@@ -62,6 +68,16 @@ public class GameManager : MonoBehaviour
             MissionsUI[i].targetImage.sprite = Missions[i].targetImage;
             MissionsUI[i].targetValueText.text = Missions[i].ballNumber.ToString();
             
+            if (Missions[i].MissionType == "Ball")
+            {
+                isBallTargetActive = true;
+                ballValue = Missions[i].ballNumber;
+            } else if (Missions[i].MissionType == "Box")
+            {
+                isBoxTargetActive = true;
+                boxValue = Missions[i].ballNumber;
+            }
+
         }
 
     }
@@ -81,6 +97,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (remainBallCount <= 0) return;
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -136,27 +153,35 @@ public class GameManager : MonoBehaviour
                 currentBall = balls[poolIndex];
                 remainBallCount--;
                 remainBallCountText.text = remainBallCount.ToString();
+                
 
-
-                if (poolIndex == balls.Length)
-                {
-
-                }
-                else
+                if (poolIndex != balls.Length - 1)
                 {
                     poolIndex++;
                     balls[poolIndex].transform.position = nextBall.transform.position;
                     balls[poolIndex].SetActive(true);
+
                 }
 
 
-
             }
+
+            if (remainBallCount == 0)
+                Invoke("CheckMissions", 3f);
+
         }
 
 
 
 
+    }
+
+    private void CheckMissions()
+    {
+        if (totalMissionCount == 0)
+            YouWin();
+        else
+            YouLose();
     }
 
     public void ExplosionEffect(Vector2 Position)
@@ -174,6 +199,24 @@ public class GameManager : MonoBehaviour
         boxRippedEffects[boxRippedIndex].Play();
         boxRippedIndex++;
 
+        if (isBoxTargetActive)
+        {
+            boxValue--;
+            if (boxValue == 0)
+            {
+                MissionsUI[1].isCompleted.SetActive(true);
+
+            }
+            totalMissionCount--;
+
+            if (totalMissionCount == 0)
+            {
+                YouWin();
+            }
+
+
+        }
+
 
         if (boxRippedIndex == boxRippedEffects.Length - 1)
         {
@@ -183,5 +226,33 @@ public class GameManager : MonoBehaviour
             boxRippedIndex++;
 
     }
+
+    
+    public void MissionCountControl(int number)
+    {
+        if (number == ballValue)
+        {
+            MissionsUI[0].isCompleted.SetActive(true);
+
+            totalMissionCount--;
+
+            if (totalMissionCount == 0)
+            {
+                YouWin();
+            }
+
+        }
+    }
+
+    private void YouWin()
+    {
+        Debug.Log("you win");
+    }
+
+    private void YouLose()
+    {
+
+    }
+
 
 }

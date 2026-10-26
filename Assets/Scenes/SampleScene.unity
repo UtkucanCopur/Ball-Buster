@@ -85522,7 +85522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &910956686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -85549,7 +85549,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910956685}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -86783,7 +86783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1003671340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97807,7 +97807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1185042855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97834,7 +97834,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185042854}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -129159,7 +129159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1681667676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -158018,21 +158018,24 @@ MonoBehaviour:
   nextBall: {fileID: 1072782445}
   currentBall: {fileID: 0}
   Missions:
-  - targetImage: {fileID: -4778695505765949853, guid: f341dd4f443b52040b321d111e43fc48, type: 3}
+  - targetImage: {fileID: -4730154228112189121, guid: 2731944b5f922d040ba6b6860afbb0e9, type: 3}
     ballNumber: 128
     isCompleted: {fileID: 910956685}
     MissionType: Ball
   - targetImage: {fileID: -38807097732301139, guid: 40a62482ef71d0b40a66555a1455565b, type: 3}
-    ballNumber: 5
+    ballNumber: 1
     isCompleted: {fileID: 1185042854}
     MissionType: Box
   MissionsUI:
-  - targetImage: {fileID: 1003671341}
+  - target: {fileID: 1003671339}
+    targetImage: {fileID: 1003671341}
     targetValueText: {fileID: 1656180869}
     isCompleted: {fileID: 910956685}
-  - targetImage: {fileID: 1681667677}
+  - target: {fileID: 1681667675}
+    targetImage: {fileID: 1681667677}
     targetValueText: {fileID: 1208104899}
     isCompleted: {fileID: 1185042854}
+  isBallTargetActive: 0
 --- !u!4 &1901738490
 Transform:
   m_ObjectHideFlags: 0
