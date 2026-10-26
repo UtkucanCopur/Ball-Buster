@@ -1,5 +1,27 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
+[Serializable]
+public class Missions
+{
+    public Sprite targetImage;
+    public int ballNumber;
+    public GameObject isCompleted;
+    public string MissionType;
+}
+
+[Serializable]
+public class MissionsUI
+{
+    public GameObject target;
+    public Image targetImage;
+    public TextMeshProUGUI targetValueText;
+    public GameObject isCompleted;
+}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -22,11 +44,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject nextBall;
     [SerializeField] private GameObject currentBall;
 
+
+
+    [Header("----Missions----")]
+    [SerializeField] private List<Missions> Missions;
+    [SerializeField] private List<MissionsUI> MissionsUI;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         remainBallCount = balls.Length;
         GetBall(true);
+
+        for (int i = 0; i < Missions.Count; i++)
+        {
+            MissionsUI[i].target.SetActive(true);
+            MissionsUI[i].targetImage.sprite = Missions[i].targetImage;
+            MissionsUI[i].targetValueText.text = Missions[i].ballNumber.ToString();
+            
+        }
+
     }
 
     // 2-Red
